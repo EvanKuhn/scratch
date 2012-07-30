@@ -18,25 +18,87 @@ static char* test_vector_size() {
   return 0;
 }
 
+static char* test_vector_capacity() {
+  int_vector* v = int_vector_new(1);
+  mu_assert("int_vector_capacity() didn't return expected value (1)",
+            int_vector_capacity(v) == 1);
+  int_vector_reserve(v, 10);
+  mu_assert("int_vector_capacity() didn't return expected value (10)",
+            int_vector_capacity(v) == 10);
+  return 0;
+}
 
-/*
-TODO - tests these:
-size_t      int_vector_size     (const int_vector* v);
-size_t      int_vector_capacity (const int_vector* v);
-void        int_vector_clear    (int_vector* v);
-void        int_vector_reserve  (int_vector* v, size_t newsize);
-void        int_vector_resize   (int_vector* v, size_t newsize);
-int         int_vector_get      (int_vector* v, size_t i);
-void        int_vector_set      (int_vector* v, size_t i, int value);
-void        int_vector_append   (int_vector* v, int value);
-int         int_vector_front    (int_vector* v);
-int         int_vector_back     (int_vector* v);
-*/
+static char* test_vector_clear() {
+  int_vector* v = int_vector_new(1);
+  int_vector_resize(v, 10);
+  mu_assert("int_vector_size() didn't return expected value (10)",
+            int_vector_size(v) == 10);
+  mu_assert("int_vector_capacity() didn't return expected value (10)",
+            int_vector_capacity(v) == 10);
+  int_vector_clear(v);
+  mu_assert("int_vector_size() didn't return expected value (0)",
+            int_vector_size(v) == 0);
+  mu_assert("int_vector_capacity() didn't return same expected value (10)",
+            int_vector_capacity(v) == 10);
+  return 0;
+}
+
+static char* test_vector_reserve() {
+  int_vector* v = int_vector_new(1);
+  mu_assert("int_vector_capacity() didn't return expected initial value (1)",
+            int_vector_capacity(v) == 1);
+  int_vector_reserve(v, 22);
+  mu_assert("int_vector_capacity() didn't return expected new value (22)",
+            int_vector_capacity(v) == 22);
+  int_vector_reserve(v, 5);
+  mu_assert("int_vector_capacity() should not decrease capacity",
+            int_vector_capacity(v) == 22);
+  return 0;
+}
+
+static char* test_vector_resize() {
+  int_vector* v = int_vector_new(1);
+  return 0;
+}
+
+static char* test_vector_get() {
+  int_vector* v = int_vector_new(1);
+  return 0;
+}
+
+static char* test_vector_set() {
+  int_vector* v = int_vector_new(1);
+  return 0;
+}
+
+static char* test_vector_append() {
+  int_vector* v = int_vector_new(1);
+  return 0;
+}
+
+static char* test_vector_front() {
+  int_vector* v = int_vector_new(1);
+  return 0;
+}
+
+static char* test_vector_back() {
+  int_vector* v = int_vector_new(1);
+  return 0;
+}
 
 char* test_int_vector() {
   printf("Testing: int_vector\n");
   mu_run_test(test_vector_new);
   mu_run_test(test_vector_size);
+  mu_run_test(test_vector_capacity);
+  mu_run_test(test_vector_clear);
+  mu_run_test(test_vector_reserve);
+  mu_run_test(test_vector_resize);
+  mu_run_test(test_vector_get);
+  mu_run_test(test_vector_set);
+  mu_run_test(test_vector_append);
+  mu_run_test(test_vector_front);
+  mu_run_test(test_vector_back);
   return 0;
 }
 

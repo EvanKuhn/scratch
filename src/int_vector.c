@@ -35,12 +35,17 @@ void int_vector_clear(int_vector* v) {
 }
 
 void int_vector_reserve(int_vector* v, size_t mincap) {
+  // Do nothing if capacity is already big enough
+  if(mincap < v->cap) return;
+
   // Try to double capacity. If not enough, just use the new size.
   size_t newcap = v->cap * 2;
   if(newcap < mincap) newcap = mincap;
+
   // Allocate a new buffer and copy data over
   int* newdata = malloc(newcap * sizeof(int));
   memcpy(newdata, v->data, v->size * sizeof(int));
+
   // Free the old buffer and save the new one
   free(v->data);
   v->data = newdata;
