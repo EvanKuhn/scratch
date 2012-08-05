@@ -180,19 +180,58 @@ static char* test_string_append_str() {
 
 static char* test_string_trim() {
   string* str = string_new();
-  string_clear(str); //TODO
+  string_trim(str);
+  mu_assert("string_trim() fails for new string", string_equal_cstr(str, ""));
+  string_set(str, "hello there");
+  string_trim(str);
+  mu_assert("string_trim() fails for 'hello there'", string_equal_cstr(str, "hello there"));
+  string_set(str, "   xxx");
+  string_trim(str);
+  mu_assert("string_trim() fails for '   xxx'", string_equal_cstr(str, "xxx"));
+  string_set(str, "xxx   ");
+  string_trim(str);
+  mu_assert("string_trim() fails for 'xxx   '", string_equal_cstr(str, "xxx"));
+  string_set(str, "   xxx   ");
+  string_trim(str);
+  mu_assert("string_trim() fails for '   xxx   '", string_equal_cstr(str, "xxx"));
   return 0;
 }
 
 static char* test_string_ltrim() {
   string* str = string_new();
-  string_clear(str); //TODO
+  string_ltrim(str);
+  mu_assert("string_ltrim() fails for new string", string_equal_cstr(str, ""));
+  string_set(str, "hello there");
+  string_ltrim(str);
+  mu_assert("string_ltrim() fails for 'hello there'", string_equal_cstr(str, "hello there"));
+  string_set(str, "   xxx");
+  string_ltrim(str);
+  mu_assert("string_ltrim() fails for '   xxx'", string_equal_cstr(str, "xxx"));
+  string_set(str, "xxx   ");
+  string_ltrim(str);
+  mu_assert("string_ltrim() fails for 'xxx   '", string_equal_cstr(str, "xxx   "));
+  string_set(str, "   xxx   ");
+  string_ltrim(str);
+  mu_assert("string_ltrim() fails for '   xxx   '", string_equal_cstr(str, "xxx   "));
   return 0;
 }
 
 static char* test_string_rtrim() {
   string* str = string_new();
-  string_clear(str); //TODO
+  string_rtrim(str);
+  mu_assert("string_rtrim() fails for new string", string_equal_cstr(str, ""));
+  string_set(str, "hello there");
+  string_rtrim(str);
+  mu_assert("string_rtrim() fails for 'hello there'", string_equal_cstr(str, "hello there"));
+  string_set(str, "   xxx");
+  string_rtrim(str);
+  mu_assert("string_rtrim() fails for '   xxx'", string_equal_cstr(str, "   xxx"));
+  string_set(str, "xxx   ");
+  string_rtrim(str);
+  mu_assert("string_rtrim() fails for 'xxx   '", string_equal_cstr(str, "xxx"));
+  string_set(str, "   xxx   ");
+  string_rtrim(str);
+  mu_assert("string_rtrim() fails for '   xxx   '", string_equal_cstr(str, "   xxx"));
   return 0;
 }
 

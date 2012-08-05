@@ -58,31 +58,37 @@ static char* test_vector_reserve() {
 
 static char* test_vector_resize() {
   int_vector* v = int_vector_new(1);
+  // TODO
   return 0;
 }
 
 static char* test_vector_get() {
   int_vector* v = int_vector_new(1);
+  // TODO
   return 0;
 }
 
 static char* test_vector_set() {
   int_vector* v = int_vector_new(1);
+  // TODO
   return 0;
 }
 
 static char* test_vector_append() {
   int_vector* v = int_vector_new(1);
+  // TODO
   return 0;
 }
 
 static char* test_vector_front() {
   int_vector* v = int_vector_new(1);
+  // TODO
   return 0;
 }
 
 static char* test_vector_back() {
   int_vector* v = int_vector_new(1);
+  // TODO
   return 0;
 }
 
